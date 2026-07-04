@@ -4,6 +4,7 @@ import {
   CloudSnow,
   TriangleAlert,
 } from "lucide-react";
+import { dashboardData } from "./data/mockDashboardData";
 
 import StatCard from "../../shared/components/ui/StatCard";
 
@@ -22,32 +23,32 @@ export default function Dashboard() {
 
         <StatCard
           title="Current Weather"
-          value="-8°C"
-          subtitle="Heavy Snow"
+          value={dashboardData.weather.temperature}
+          subtitle={dashboardData.weather.condition}
           icon={CloudSnow}
           color="text-blue-600"
         />
 
         <StatCard
           title="Community Risk"
-          value="87%"
-          subtitle="High"
+          value={`${dashboardData.risk.score}%`}
+          subtitle={dashboardData.risk.level}
           icon={TriangleAlert}
           color="text-red-600"
         />
 
         <StatCard
           title="Active Alerts"
-          value="3"
-          subtitle="Winter Storm"
+          value={dashboardData.alerts.active.toString()}
+          subtitle={dashboardData.alerts.latest}
           icon={Bell}
           color="text-amber-500"
         />
 
         <StatCard
           title="Resources Ready"
-          value="12"
-          subtitle="Emergency Units"
+          value={dashboardData.resources.available.toString()}
+          subtitle={dashboardData.resources.status}
           icon={Ambulance}
           color="text-green-600"
         />
