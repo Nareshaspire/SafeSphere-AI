@@ -4,9 +4,9 @@ import {
   CloudSnow,
   TriangleAlert,
 } from "lucide-react";
-import { dashboardData } from "./data/mockDashboardData";
-
 import StatCard from "../../shared/components/ui/StatCard";
+import HazardMap from "../map/components/HazardMap";
+import { dashboardData } from "./data/mockDashboardData";
 
 export default function Dashboard() {
   return (
@@ -55,15 +55,17 @@ export default function Dashboard() {
 
       </div>
 
-      <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-10 shadow-sm">
-        <h2 className="mb-2 text-xl font-semibold">
-          🗺️ Hazard Map
-        </h2>
+     <div className="mt-8">
+  <h2 className="mb-4 text-xl font-bold">
+    🗺️ Hazard Intelligence Map
+  </h2>
 
-        <p className="text-slate-500">
-          Google Maps integration will be added in Sprint 3.
-        </p>
-      </div>
+  <HazardMap />
+
+  <p className="mt-2 text-slate-500">
+    Google Maps integration will be added in Sprint 3.
+  </p>
+</div>
 
       <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-10 shadow-sm">
         <h2 className="mb-2 text-xl font-semibold">
