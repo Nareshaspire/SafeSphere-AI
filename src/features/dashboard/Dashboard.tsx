@@ -7,9 +7,13 @@ import {
 
 import StatCard from "../../shared/components/ui/StatCard";
 import HazardMap from "../map/components/HazardMap";
+import { useWeather } from "../weather/hooks/useWeather";
 import { dashboardData } from "./data/mockDashboardData";
 
 export default function Dashboard() {
+  // Live Weather Hook
+  const weather = useWeather();
+
   return (
     <div className="min-h-screen bg-[#0B1120] p-8">
 
@@ -45,8 +49,8 @@ export default function Dashboard() {
 
         <StatCard
           title="Current Weather"
-          value={dashboardData.weather.temperature}
-          subtitle={dashboardData.weather.condition}
+          value={weather.temperature}
+          subtitle={`${weather.condition} • Wind ${weather.wind}`}
           icon={CloudSnow}
           color="text-sky-400"
         />
@@ -77,14 +81,13 @@ export default function Dashboard() {
 
       </div>
 
-      {/* Map */}
+      {/* Hazard Map */}
 
       <div className="mt-10 rounded-3xl border border-slate-700 bg-[#101827] p-6 shadow-xl">
 
         <div className="mb-5 flex items-center justify-between">
 
           <div>
-
             <h2 className="text-2xl font-bold text-white">
               🗺️ Hazard Intelligence Map
             </h2>
@@ -92,7 +95,6 @@ export default function Dashboard() {
             <p className="text-slate-400">
               Live Emergency Resource Locations
             </p>
-
           </div>
 
         </div>
@@ -101,7 +103,7 @@ export default function Dashboard() {
 
       </div>
 
-      {/* AI Briefing */}
+      {/* AI Operational Briefing */}
 
       <div className="mt-10 rounded-3xl border border-violet-700 bg-gradient-to-r from-violet-900 to-slate-900 p-8 shadow-2xl">
 
@@ -112,7 +114,6 @@ export default function Dashboard() {
         <div className="grid gap-6 md:grid-cols-2">
 
           <div>
-
             <h3 className="mb-2 text-lg font-semibold text-red-400">
               Risk Level
             </h3>
@@ -120,11 +121,9 @@ export default function Dashboard() {
             <p className="text-slate-300">
               🔴 HIGH
             </p>
-
           </div>
 
           <div>
-
             <h3 className="mb-2 text-lg font-semibold text-sky-400">
               Situation
             </h3>
@@ -132,45 +131,31 @@ export default function Dashboard() {
             <p className="text-slate-300">
               Heavy snowfall expected within the next 12 hours.
             </p>
-
           </div>
 
           <div>
-
             <h3 className="mb-2 text-lg font-semibold text-amber-400">
               Predicted Impacts
             </h3>
 
             <ul className="list-disc pl-5 text-slate-300">
-
               <li>Reduced road visibility</li>
-
               <li>Higher accident probability</li>
-
               <li>Possible localized power outages</li>
-
             </ul>
-
           </div>
 
           <div>
-
             <h3 className="mb-2 text-lg font-semibold text-emerald-400">
               Recommended Actions
             </h3>
 
             <ul className="list-disc pl-5 text-slate-300">
-
               <li>Deploy additional snowplows</li>
-
               <li>Increase EMS staffing</li>
-
               <li>Prepare warming centres</li>
-
               <li>Issue public travel advisory</li>
-
             </ul>
-
           </div>
 
         </div>
