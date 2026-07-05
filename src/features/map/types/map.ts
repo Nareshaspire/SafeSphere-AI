@@ -6,9 +6,20 @@ export type EmergencyType =
   | "warming";
 
 export interface EmergencyLocation {
-  id: number;
+  id: string;
   name: string;
   type: EmergencyType;
-  lat: number;
-  lng: number;
+
+  position: {
+    lat: number;
+    lng: number;
+  };
+
+  address: string;
+
+  status: "Available" | "Busy" | "Offline";
+
+  capacity: number;
+
+  lastUpdated: string;
 }
