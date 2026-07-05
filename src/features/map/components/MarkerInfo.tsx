@@ -1,21 +1,37 @@
-export function getMarkerIcon(type: string) {
-  switch (type) {
-    case "hospital":
-      return "🏥";
+import type { EmergencyLocation } from "../types/map";
 
-    case "fire":
-      return "🚒";
+interface MarkerInfoProps {
+  location: EmergencyLocation;
+}
 
-    case "police":
-      return "🚓";
+export default function MarkerInfo({
+  location,
+}: MarkerInfoProps) {
+  return (
+    <div
+      style={{
+        minWidth: "220px",
+        padding: "10px",
+      }}
+    >
+      <h3
+        style={{
+          margin: 0,
+          marginBottom: "10px",
+        }}
+      >
+        {location.name}
+      </h3>
 
-    case "ems":
-      return "🚑";
+      <p><strong>Type:</strong> {location.type}</p>
 
-    case "warming":
-      return "❄️";
+      <p><strong>Status:</strong> {location.status}</p>
 
-    default:
-      return "📍";
-  }
+      <p><strong>Capacity:</strong> {location.capacity}%</p>
+
+      <p><strong>Address:</strong> {location.address}</p>
+
+      <p><strong>Updated:</strong> {location.lastUpdated}</p>
+    </div>
+  );
 }
