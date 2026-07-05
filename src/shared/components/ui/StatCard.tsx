@@ -13,27 +13,37 @@ export default function StatCard({
   value,
   subtitle,
   icon: Icon,
-  color = "text-blue-600",
+  color = "text-blue-400",
 }: StatCardProps) {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 transition hover:shadow-md">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-slate-500">{title}</p>
+    <div className="rounded-3xl border border-slate-700 bg-[#101827] p-6 shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
 
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
+      <div className="flex items-start justify-between">
+
+        <div>
+
+          <p className="text-sm text-slate-400">
+            {title}
+          </p>
+
+          <h2 className="mt-3 text-5xl font-bold text-white">
             {value}
           </h2>
 
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-2 text-slate-400">
             {subtitle}
           </p>
+
         </div>
 
-        <div className={`rounded-xl bg-slate-100 p-3 ${color}`}>
-          <Icon size={28} />
+        <div
+          className={`rounded-2xl bg-slate-900 p-4 ${color}`}
+        >
+          <Icon size={34} />
         </div>
+
       </div>
+
     </div>
   );
 }
