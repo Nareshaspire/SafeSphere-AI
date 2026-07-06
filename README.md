@@ -1,32 +1,92 @@
-# React + TypeScript + Vite
+# 🚨 SafeSphere AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> AI-Powered Emergency Preparedness & Decision Intelligence Platform
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange)
+![Gemini](https://img.shields.io/badge/Google-Gemini_AI-green)
+![Google Maps](https://img.shields.io/badge/Google-Maps-red)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🌍 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+https://gen-lang-client-0623927789.web.app
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 📖 Overview
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+SafeSphere AI is an intelligent emergency preparedness platform that combines real-time weather, emergency resources, Google Maps, Firebase Firestore, and Gemini AI to help emergency responders make faster and smarter decisions.
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+## 📸 Application Preview
+
+### Dashboard
+
+![Dashboard](docs/dashboard.png)
+
+### Emergency Operations Map
+
+![Map](docs/map.png)
+
+### AI Operational Briefing
+
+![AI](docs/ai.png)
+
+### Resource Monitoring
+
+![Resources](docs/resources.png)
+
+## ✨ Features
+
+- 🚨 Emergency Operations Dashboard
+- 🗺 Interactive Google Maps
+- 🔥 Live Firestore Updates
+- 🤖 Gemini AI Operational Briefings
+- 🌦 Weather Intelligence
+- 📈 Community Risk Analytics
+- 🚑 Emergency Resource Monitoring
+- ⚡ Real-time Decision Support
+
+---
+
+## 🛠 Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Firebase Firestore
+- Firebase Hosting
+- Google Maps Platform
+- Gemini AI
+- Google Cloud
+
+---
+
+## 🚀 Future Roadmap
+
+- Vertex AI
+- BigQuery Analytics
+- Route Optimization
+- Predictive Disaster Forecasting
+- Mobile App
+- Multi-city Monitoring
+
+---
+
+## 👨‍💻 Developer
+
+Naresh K
+
+LinkedIn:
+https://www.linkedin.com/in/nareshaspire
+
+---
+
+## 📜 License
+
+MIT License
