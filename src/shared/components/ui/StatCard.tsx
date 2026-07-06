@@ -2,10 +2,11 @@ import type { LucideIcon } from "lucide-react";
 
 interface StatCardProps {
   title: string;
-  value: string;
+  value: number | string;
   subtitle: string;
   icon: LucideIcon;
   color?: string;
+  suffix?: string;
 }
 
 export default function StatCard({
@@ -13,25 +14,30 @@ export default function StatCard({
   value,
   subtitle,
   icon: Icon,
-  color = "text-blue-600",
+  color = "text-sky-500",
+  suffix = "",
 }: StatCardProps) {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 transition hover:shadow-md">
+    <div className="group rounded-2xl border border-slate-700 bg-[#101827] p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-sky-500">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-slate-500">{title}</p>
+          <p className="text-sm text-slate-400">
+            {title}
+          </p>
 
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {value}
+          <h2 className="mt-3 text-4xl font-bold text-white">
+            {typeof value === "number"
+              ? `${value}${suffix}`
+              : value}
           </h2>
 
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-400">
             {subtitle}
           </p>
         </div>
 
-        <div className={`rounded-xl bg-slate-100 p-3 ${color}`}>
-          <Icon size={28} />
+        <div className={`rounded-2xl bg-slate-800 p-4 ${color}`}>
+          <Icon size={30} />
         </div>
       </div>
     </div>
