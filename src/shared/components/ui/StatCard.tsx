@@ -18,28 +18,30 @@ export default function StatCard({
   suffix = "",
 }: StatCardProps) {
   return (
-    <div className="group rounded-2xl border border-slate-700 bg-[#101827] p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-sky-500">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-slate-400">
-            {title}
-          </p>
-
-          <h2 className="mt-3 text-4xl font-bold text-white">
-            {typeof value === "number"
-              ? `${value}${suffix}`
-              : value}
-          </h2>
-
-          <p className="mt-2 text-sm text-slate-400">
-            {subtitle}
-          </p>
-        </div>
-
-        <div className={`rounded-2xl bg-slate-800 p-4 ${color}`}>
-          <Icon size={30} />
-        </div>
+    <div className="glass-panel p-5 group flex flex-col justify-between">
+      
+      <div className="flex items-start justify-between mb-2">
+        <h3 className="text-[13px] font-semibold text-slate-300 tracking-wide">
+          {title}
+        </h3>
+        <Icon size={18} className={`${color}`} />
       </div>
+
+      <div>
+        <div className="flex items-baseline gap-1">
+          <h2 className="text-3xl font-bold text-white tracking-tight">
+            {value}
+          </h2>
+          {suffix && (
+            <span className="text-xl font-semibold text-slate-300">{suffix}</span>
+          )}
+        </div>
+        
+        <p className="mt-1 text-[10px] text-slate-500 uppercase tracking-widest font-bold">
+          {subtitle}
+        </p>
+      </div>
+
     </div>
   );
 }

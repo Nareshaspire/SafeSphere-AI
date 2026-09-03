@@ -1,68 +1,38 @@
-const resources = [
-  {
-    name: "EMS",
-    value: 91,
-  },
-  {
-    name: "Fire",
-    value: 82,
-  },
-  {
-    name: "Police",
-    value: 97,
-  },
-  {
-    name: "Hospitals",
-    value: 76,
-  },
-];
+import { Activity } from "lucide-react";
+import { useResources } from "../hooks/useDashboardData";
 
 export default function ResourceHealth() {
+  const resources = useResources();
 
   return (
+    <div className="glass-panel p-6 flex flex-col h-full">
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="text-[14px] font-bold text-white tracking-wide uppercase">
+          Resource Health
+        </h2>
+        <Activity size={16} className="text-slate-500" />
+      </div>
 
-    <div className="rounded-3xl border border-slate-700 bg-[#101827] p-6">
-
-      <h2 className="mb-6 text-xl font-bold text-white">
-        Resource Health
-      </h2>
-
-      {resources.map((resource) => (
-
-        <div
-          key={resource.name}
-          className="mb-6"
-        >
-
-          <div className="mb-2 flex justify-between">
-
-            <span className="text-slate-300">
-              {resource.name}
-            </span>
-
-            <span className="text-white">
-              {resource.value}%
-            </span>
-
+      <div className="space-y-5">
+        {resources.map((resource) => (
+          <div key={resource.name}>
+            <div className="mb-1.5 flex justify-between items-end">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                {resource.name}
+              </span>
+              <span className="text-xs text-white font-bold">
+                {resource.value}%
+              </span>
+            </div>
+            <div className="h-1 rounded-full bg-[#2a2b36] overflow-hidden">
+              <div
+                className={`h-full rounded-full ${resource.color}`}
+                style={{ width: `${resource.value}%` }}
+              />
+            </div>
           </div>
-
-          <div className="h-3 rounded-full bg-slate-700">
-
-            <div
-              className="h-3 rounded-full bg-sky-500"
-              style={{
-                width: `${resource.value}%`,
-              }}
-            />
-
-          </div>
-
-        </div>
-
-      ))}
-
+        ))}
+      </div>
     </div>
-
   );
-
 }

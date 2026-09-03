@@ -1,63 +1,37 @@
-import { Activity, ShieldCheck } from "lucide-react";
+import { Activity } from "lucide-react";
 export default function DashboardHeader() {
   return (
-    <div className="mb-8 flex items-center justify-between">
+    <div className="mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
 
-      <div>
-
-        <div className="flex items-center gap-3">
-
-          <div className="rounded-xl bg-sky-500/20 p-3">
-
-            <ShieldCheck
-              size={28}
-              className="text-sky-400"
-            />
-
-          </div>
-
-          <div>
-
-            <h1 className="text-4xl font-bold text-white">
-              SafeSphere AI
-            </h1>
-
-            <p className="text-slate-400">
-              AI-Powered Emergency Operations Center
-            </p>
-
-          </div>
-
+      <div className="glass-panel px-8 py-4 rounded-full flex items-center relative cursor-default">
+        <div>
+          <h1 className="text-2xl font-bold text-white tracking-wide">
+            Command Overview
+          </h1>
         </div>
-
       </div>
 
-      <div className="rounded-2xl border border-green-500/30 bg-green-500/10 px-6 py-4">
+      <div className="glass-panel rounded-full border-emerald-500/30 bg-emerald-500/5 px-6 py-3 shadow-[0_0_20px_rgba(16,185,129,0.15)] flex items-center gap-4 cursor-default">
 
-        <div className="flex items-center gap-3">
+        <Activity
+          size={22}
+          className="animate-pulse text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.9)]"
+        />
 
-          <Activity
-            size={18}
-            className="animate-pulse text-green-400"
-          />
+        <div>
 
-          <div>
+          <p className="text-[10px] uppercase tracking-widest text-emerald-200/50 font-bold mb-0.5">
+            System Status
+          </p>
 
-            <p className="text-sm text-slate-400">
-              System Status
-            </p>
-
-            <p className="font-semibold text-green-400">
-              All Systems Operational
-            </p>
-
-          </div>
+          <p className="text-sm font-bold text-emerald-400 tracking-wider">
+            All Systems Operational
+          </p>
 
         </div>
 
       </div>
 
     </div>
-    
   );
 }

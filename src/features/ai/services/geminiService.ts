@@ -1,15 +1,25 @@
 import { GoogleGenAI } from "@google/genai";
 import type { OperationalBriefing } from "../types/ai";
 
-const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-});
+let ai: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!ai) {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("VITE_GEMINI_API_KEY is missing from environment variables.");
+    }
+    ai = new GoogleGenAI({ apiKey });
+  }
+  return ai;
+}
 
 export async function generateOperationalBriefing(
   prompt: string
 ): Promise<OperationalBriefing> {
+  const instance = getAI();
 
-  const response = await ai.models.generateContent({
+  const response = await instance.models.generateContent({
     model: "gemini-2.5-flash",
     contents: prompt,
   });
@@ -17,10 +27,10 @@ export async function generateOperationalBriefing(
   const text = response.text ?? "{}";
 
   try {
-    return JSON.parse(text);
+    const cleanedText = text.replace(/```json\n?|\n?```/g, '').trim();
+    return JSON.parse(cleanedText);
   } catch (error) {
     console.error(error);
-
     throw new Error("Gemini returned invalid JSON");
   }
 }

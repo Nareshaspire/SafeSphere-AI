@@ -1,52 +1,49 @@
-import BottomAnalytics from "./components/BottomAnalytics";
-import DashboardHeader from "./components/DashboardHeader";
 import KPIGrid from "./components/KPIGrid";
 import MapPanel from "./components/MapPanel";
-import RightSidebar from "./components/RightSidebar";
-
-import { dashboardData } from "./data/mockDashboardData";
+import IncidentTimeline from "./components/IncidentTimeline";
+import ResourceHealth from "./components/ResourceHealth";
+import AIBriefing from "../ai/components/AIBriefing";
+import { useWeather } from "../weather/hooks/useWeather";
+import { useMetrics } from "./hooks/useDashboardData";
 
 export default function Dashboard() {
+  const weather = useWeather();
+  const metrics = useMetrics();
+
   return (
-    <div className="min-h-screen bg-[#0B1120] p-8">
+    <div className="min-h-screen bg-transparent p-4 lg:p-8 relative">
+      <div className="relative z-10">
+        {/* ================= KPI CARDS ================= */}
+        <KPIGrid
+          risk={metrics.risk.score}
+          riskLevel={metrics.risk.level}
+          alerts={metrics.alerts.active}
+          resources={metrics.resources.available}
+        />
 
-      {/* ================= HEADER ================= */}
-      <DashboardHeader />
-
-      {/* ================= KPI CARDS ================= */}
-      <KPIGrid
-        risk={dashboardData.risk.score}
-        riskLevel={dashboardData.risk.level}
-        alerts={dashboardData.alerts.active}
-        resources={dashboardData.resources.available}
-      />
-
-      {/* ================= MAIN LAYOUT ================= */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-12">
-
-        {/* ================= LEFT SIDE ================= */}
-        <div className="space-y-6 lg:col-span-8">
-          {/* Google Maps */}
+        {/* ================= TACTICAL MAP ================= */}
+        <div className="mt-10">
           <MapPanel />
-
         </div>
 
-        {/* ================= RIGHT SIDE ================= */}
-        <div className="lg:col-span-4">
+        {/* ================= BOTTOM PANELS ================= */}
+        <div className="mt-10 grid gap-10 xl:grid-cols-3">
+          
+          <IncidentTimeline />
 
-          <RightSidebar
-            risk={`${dashboardData.risk.score}% (${dashboardData.risk.level})`}
-            alerts={dashboardData.alerts.active}
-            resources={dashboardData.resources.available}
+          <AIBriefing
+            temperature={weather.temperature}
+            condition={weather.condition}
+            wind={weather.wind}
+            risk={`${metrics.risk.score}% (${metrics.risk.level})`}
+            alerts={metrics.alerts.active}
+            resources={metrics.resources.available}
           />
 
+          <ResourceHealth />
+
         </div>
-
       </div>
-
-      {/* ================= ANALYTICS ================= */}
-      <BottomAnalytics />
-
     </div>
   );
 }

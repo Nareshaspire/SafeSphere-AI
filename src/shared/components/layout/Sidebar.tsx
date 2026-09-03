@@ -21,23 +21,23 @@ const items = [
 
 export default function Sidebar() {
   return (
-    <aside className="flex h-screen w-72 flex-col bg-[#081224] text-white">
+    <aside className="flex h-screen w-72 flex-col bg-white/5 backdrop-blur-xl border-r border-white/10 text-white shadow-2xl relative z-40">
 
-      <div className="border-b border-slate-700 p-6">
+      <div className="border-b border-white/10 p-6">
 
         <div className="flex items-center gap-3">
 
-          <div className="rounded-xl bg-violet-600 p-3">
-            <Shield size={28} />
+          <div className="rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 p-3 shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+            <Shield size={28} className="text-white" />
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold">
-              SafeSphere AI
+            <h2 className="text-2xl font-bold tracking-wide">
+              SafeSphere
             </h2>
 
-            <p className="text-sm text-slate-400">
-              Emergency Intelligence
+            <p className="text-xs text-violet-300 uppercase tracking-wider font-semibold">
+              Intelligence
             </p>
           </div>
 
@@ -45,22 +45,22 @@ export default function Sidebar() {
 
       </div>
 
-      <nav className="flex-1 p-5">
+      <nav className="flex-1 p-5 overflow-y-auto overflow-x-hidden">
 
         {items.map((item) => (
           <button
             key={item.label}
-            className={`mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition
+            className={`mb-3 flex w-full items-center gap-4 rounded-xl px-4 py-3 transition-all duration-300
 
             ${
               item.active
-                ? "bg-violet-600 text-white shadow-lg"
-                : "text-slate-300 hover:bg-slate-800"
+                ? "bg-gradient-to-r from-violet-600/80 to-indigo-600/80 text-white shadow-[0_0_15px_rgba(124,58,237,0.3)] border border-violet-500/30"
+                : "text-slate-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/5"
             }`}
           >
-            <item.icon size={22} />
+            <item.icon size={22} className={item.active ? "drop-shadow-md" : ""} />
 
-            <span className="font-medium">
+            <span className="font-medium tracking-wide">
               {item.label}
             </span>
           </button>
@@ -68,17 +68,20 @@ export default function Sidebar() {
 
       </nav>
 
-      <div className="border-t border-slate-700 p-6">
+      <div className="border-t border-white/10 p-6">
 
-        <div className="rounded-xl bg-slate-800 p-4">
+        <div className="rounded-xl bg-white/5 border border-white/10 p-4 backdrop-blur-md">
 
-          <p className="text-sm text-slate-400">
+          <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
             System Status
           </p>
 
-          <p className="mt-2 text-green-400 font-semibold">
-            ● All Systems Operational
-          </p>
+          <div className="mt-2 flex items-center gap-2">
+            <div className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)] animate-pulse"></div>
+            <p className="text-emerald-400 font-medium text-sm">
+              All Systems Operational
+            </p>
+          </div>
 
         </div>
 

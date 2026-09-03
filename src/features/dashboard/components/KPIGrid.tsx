@@ -1,14 +1,10 @@
-import {
-    Ambulance,
-    Bell,
-    TriangleAlert,
-} from "lucide-react";
-
+import { AlertTriangle, ShieldAlert } from "lucide-react";
 import StatCard from "../../../shared/components/ui/StatCard";
 import { useWeather } from "../../weather/hooks/useWeather";
 import { getWeatherIcon } from "../../weather/utils/weatherIcon";
+import AIStatus from "./AIStatus";
 
-interface Props {
+interface KPIGridProps {
   risk: number;
   riskLevel: string;
   alerts: number;
@@ -19,48 +15,40 @@ export default function KPIGrid({
   risk,
   riskLevel,
   alerts,
-  resources,
-}: Props) {
+}: KPIGridProps) {
   const weather = useWeather();
-
   const WeatherIcon = getWeatherIcon(weather.condition);
 
   return (
-    <div className="mb-8 grid gap-6 lg:grid-cols-4">
+    <div className="mb-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
 
       <StatCard
         title="Current Weather"
-        value={parseInt(weather.temperature)}
-        suffix="°C"
-        subtitle={`${weather.condition} • Wind ${weather.wind}`}
+        value={weather.temperature}
+        subtitle={`${weather.condition} • Wind ${weather.wind} km/h`}
         icon={WeatherIcon}
-        color="text-sky-500"
+        color="text-sky-400"
+        suffix="°C"
       />
 
       <StatCard
         title="Community Risk"
         value={risk}
-        suffix="%"
         subtitle={riskLevel}
-        icon={TriangleAlert}
-        color="text-red-500"
+        icon={ShieldAlert}
+        color={risk > 70 ? "text-red-500" : "text-amber-500"}
+        suffix="%"
       />
 
       <StatCard
         title="Active Alerts"
         value={alerts}
         subtitle="Emergency Notifications"
-        icon={Bell}
-        color="text-yellow-400"
+        icon={AlertTriangle}
+        color="text-amber-500"
       />
 
-      <StatCard
-        title="Resources Ready"
-        value={resources}
-        subtitle="Available Units"
-        icon={Ambulance}
-        color="text-green-500"
-      />
+      <AIStatus />
 
     </div>
   );
